@@ -1,78 +1,107 @@
-const message = document.querySelector('.message');
+const message = document.querySelector(".message");
 const game = {};
-const output = document.querySelector('.que');
-const nx = document.querySelector('.next');
-nx.addEventListener('click', createQuestion);
-const url = 'https://script.google.com/a/labs.ws/macros/s/AKfycbxENkp3sSxP-6-TwOcRqVR0WFBD-3Hn8G9d8Wsr/exec';
-fetch(url).then(function(res) {
-    return res.json()
-}).then(function(data) {
-    console.log(data.data);
-    game.total = data.data.length; // json data for game
-    game.val = 0; //question we are on
-    game.score = 0;
-    game.arr = data.data;
-    data.data.forEach(function(el) {
-            console.log(el);
-        })
-        // createQuestion();
-})
+const output = document.querySelector(".que");
+const nx = document.querySelector(".next");
+let hi = document.getElementById("buttons");
+nx.addEventListener("click", createQuestion);
+
+function welcomeMessage() {
+    document.getElementById("welcome").style.display = "block";
+    document.getElementById("quizBox").style.display = "none";
+
+    document.getElementById("start").addEventListener("click", function() {
+        document.getElementById("quizBox").style.display = "block";
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("buttons").style.display = "none";
+    });
+}
+
+// function replayGame() {
+//     document.getElementById("quizBox").style.display = "block";
+//     document.getElementById("welcome").style.display = "none";
+//     document.getElementById("buttons").style.display = "none";
+// }
+
+const url =
+    // "https://script.google.com/macros/s/AKfycbwx_LHSShjlyzjMz3od6bWgId2JK8qHI6UJtNU7I_xdaUhOLE9Y/exec ";
+
+    "https://script.google.com/a/labs.ws/macros/s/AKfycbxENkp3sSxP-6-TwOcRqVR0WFBD-3Hn8G9d8Wsr/exec";
+fetch(url)
+    .then(function(res) {
+        return res.json();
+    })
+    .then(function(data) {
+        console.log(data.data);
+        game.total = data.data.length; // json data for game
+        game.val = 0; //question we are on
+        game.score = 0;
+        game.arr = data.data;
+
+        data.data.forEach(function(el) {});
+        createQuestion();
+    });
 
 function createQuestion() {
     nx.style.display = "none";
     if (game.val + 1 > game.total) {
-        message.textContent = 'your score was ' + game.score + ' out of ' + game.total;
-        output.textContent = "GAME OVER";
+        output.textContent = "GAME OVER !";
+        message.textContent =
+            "Thanks for your time and Congratulations for finishing the game, your score is " +
+            game.score +
+            " out of " +
+            game.total;
+        hi.style.display = "block";
     } else {
-        message.textContent = 'Question #' + (game.val + 1) + ' out of ' + game.total;
-        output.innerHTML = '';
+        message.textContent =
+            "Question #" + (game.val + 1) + " out of " + game.total;
+        output.innerHTML = "";
         console.log(game);
         let q = game.arr[game.val];
         console.log(q);
-        const main = document.createElement('div');
+        const main = document.createElement("div");
         main.textContent = q.question;
-        main.classList.add('question');
+        main.classList.add("question");
         output.appendChild(main);
-        arrayRandom(q.opt);
-        q.opt.forEach(function(el) {
+        arrayRandom(q.options);
+        q.options.forEach(function(el) {
             console.log(el);
-            let span = document.createElement('span');
+            let span = document.createElement("span");
             span.textContent = el;
-            span.classList.add('answer');
-            span.classList.add('btn');
+            span.classList.add("answer");
+            span.classList.add("btn");
             output.appendChild(span);
             span.ans = q.answer;
-            span.addEventListener('click', checker);
-        })
+            span.addEventListener("click", checker);
+        });
     }
 }
 
 function arrayRandom(arr) {
     arr.sort(function() {
-        return .5 - Math.random();
-    })
+        return 0.5 - Math.random();
+    });
 }
 
 function checker(e) {
     //console.log(e.target.ans);
     //console.log(this.ans);
-    const selAns = document.querySelectorAll('.answer');
+    const selAns = document.querySelectorAll(".answer");
     selAns.forEach(function(ele) {
-        ele.classList.remove('answer');
-        ele.style.color = '#ddd';
-        ele.removeEventListener('click', checker);
-    })
+        ele.classList.remove("answer");
+        ele.style.color = "#ddd";
+        ele.removeEventListener("click", checker);
+    });
     let sel = e.target;
     console.log(sel.textContent);
     if (sel.textContent == sel.ans) {
-        console.log('correct');
-        sel.style.color = 'green';
-        nx.textContent = 'Correct - click to move to the next questions';
+        console.log("correct");
+        sel.style.color = "green";
+        nx.textContent = "Correct - click to move to the next questions";
         game.score++;
     } else {
-        sel.style.color = 'red';
-        console.log('wrong');
-        nx.textContent = 'Wrong - click to move to the next questions';
+        sel.style.color = "red";
+        console.log("wrong");
+        nx.textContent = "Wrong - click to move to the next questions";
     }
     game.val++;
     nx.style.display = "block";
