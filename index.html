@@ -2,32 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>JavaScript Quiz</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body onload="welcomeMessage()">
     <div class="container">
-        <div id="quizBox" style="display:none">
-            <div class="message ">
-            </div>
+        <div id="welcome" style="display: none;">
+            <p>
+                Hi there!
+            </p>
+            <p>
+                Welcome to the KK Training Quiz game!
+            </p>
+            <button id="start">Start the game</button>
+        </div>
+        <div id="quizBox" style="display: none;">
+            <div class="message"></div>
             <div class="que">Loading</div>
             <div class="next"></div>
-            <div id="buttons" style="display:none">
-                <button id="replay" onClick="history.go(0)" VALUE="Refresh">Replay the game</button>
-                <button>Share your Score </button>
+            <div id="buttons" style="display: none;">
+                <button id="replay" onClick="history.go(0)" value="Refresh">
+            Replay the game
+          </button>
+                <button>Share your Score</button>
             </div>
         </div>
-        <div id="welcome" style=" display:none ">
-            <p>Hi there! Welcome to the KK Training Quiz game!" </p> <button id="start">Start the game</button>
-        </div>
-
     </div>
-    <script src="script.js ">
-    </script>
+    <script src="script.js "></script>
 </body>
 
 </html>
