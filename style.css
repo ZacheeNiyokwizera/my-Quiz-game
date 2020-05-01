@@ -72,6 +72,7 @@ button {
 #welcome {
     margin-top: 170px;
     margin-left: 40px;
+    text-align: justify;
 }
 
 
@@ -83,14 +84,11 @@ button {
 @media only screen and (max-width: 400px) {
     .container {
         background-color: #FFC300;
-        margin-right: 170px;
+        margin-right: 160px;
     }
     #welcome {
-        margin-right: 150px;
-        display: block;
-    }
-    p {
-        display: block;
+        margin-right: 140px;
+        text-align: justify;
     }
     #start {
         height: 65px;
@@ -110,5 +108,8 @@ button {
     .next {
         font-size: 16px;
         width: 170px;
+    }
+    .btn {
+        margin-top: 5px;
     }
 }
