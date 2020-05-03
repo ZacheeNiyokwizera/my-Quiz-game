@@ -4,6 +4,8 @@ const output = document.querySelector(".que");
 const nx = document.querySelector(".next");
 let hi = document.getElementById("buttons");
 nx.addEventListener("click", createQuestion);
+let el = document.getElementById('last');
+// el.innerHTML = "Here are some points to consider 1. Joseph farms Goats 2. Nakivale was Kuja Kuja/s first location 3. Freddo is the short name of Frederick Wabwire4. Kuja Kuja has 2 partners 5. Hersi grew up in England";
 
 function welcomeMessage() {
     document.getElementById("welcome").style.display = "block";
@@ -50,12 +52,14 @@ function createQuestion() {
             game.score +
             " out of " +
             game.total;
+        el.style.display = "block";
         hi.style.display = "block";
+
     } else {
         message.textContent =
             "Question #" + (game.val + 1) + " out of " + game.total;
         output.innerHTML = "";
-        console.log(game);
+
         let q = game.arr[game.val];
         console.log(q);
         const main = document.createElement("div");
