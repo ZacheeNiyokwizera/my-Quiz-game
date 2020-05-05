@@ -92,19 +92,19 @@ function checker(e) {
     const selAns = document.querySelectorAll(".answer");
     selAns.forEach(function(ele) {
         ele.classList.remove("answer");
-        ele.style.color = "#ddd";
+        ele.style.color = "#008080";
         ele.removeEventListener("click", checker);
     });
     let sel = e.target;
     console.log(sel.textContent);
     if (sel.textContent == sel.ans) {
-        console.log("correct");
+
         sel.style.color = "green";
         nx.textContent = "Correct - click to move to the next questions";
         game.score++;
     } else {
         sel.style.color = "red";
-        console.log("wrong");
+
         nx.textContent = "Wrong - click to move to the next questions";
     }
     game.val++;
