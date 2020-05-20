@@ -97,6 +97,15 @@ button {
     margin: 34px auto;
 }
 
+.card {
+    width: 250px;
+    margin: 20px 0;
+    padding: 10px;
+    display: none;
+    cursor: pointer;
+    background-color: aqua;
+}
+
 
 /* Extra small devices (phones, 400px and down) */
 

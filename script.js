@@ -2,9 +2,11 @@ const message = document.querySelector(".message");
 const game = {};
 const output = document.querySelector(".que");
 const nx = document.querySelector(".next");
+
 let hi = document.getElementById("buttons");
 nx.addEventListener("click", createQuestion);
-let el = document.getElementById('last');
+
+let el = document.getElementById("last");
 // el.innerHTML = "Here are some points to consider 1. Joseph farms Goats 2. Nakivale was Kuja Kuja/s first location 3. Freddo is the short name of Frederick Wabwire4. Kuja Kuja has 2 partners 5. Hersi grew up in England";
 
 function welcomeMessage() {
@@ -54,7 +56,6 @@ function createQuestion() {
             game.total;
         el.style.display = "block";
         hi.style.display = "block";
-
     } else {
         message.textContent =
             "Question #" + (game.val + 1) + " out of " + game.total;
@@ -80,6 +81,11 @@ function createQuestion() {
     }
 }
 
+const same = document.querySelector(".card");
+same.addEventListener("click", function SecondAns() {
+    return game.val[0];
+});
+
 function arrayRandom(arr) {
     arr.sort(function() {
         return 0.5 - Math.random();
@@ -92,21 +98,31 @@ function checker(e) {
     const selAns = document.querySelectorAll(".answer");
     selAns.forEach(function(ele) {
         ele.classList.remove("answer");
-        ele.style.color = "#008080";
+        ele.style.color = "#080822";
         ele.removeEventListener("click", checker);
     });
     let sel = e.target;
     console.log(sel.textContent);
-    if (sel.textContent == sel.ans) {
 
+    // if ((game.val = 0 || sel.textContent == sel.ans)) {
+    //     sel.style.color = "green";
+
+    //     same.style.display = "block";
+    //     same.textContent = "Correct - click to select the 2nd answer";
+
+    //     game.score++;
+    // } else
+
+    if (sel.textContent == sel.ans) {
         sel.style.color = "green";
+        nx.style.display = "block";
         nx.textContent = "Correct - click to move to the next questions";
         game.score++;
     } else {
         sel.style.color = "red";
-
+        nx.style.display = "block";
         nx.textContent = "Wrong - click to move to the next questions";
+        game.val++;
     }
     game.val++;
-    nx.style.display = "block";
 }
